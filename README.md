@@ -22,7 +22,7 @@ cd Langgraph_demo
 pip install -r requirements.txt
 ```
 
-Create a `.env` in this folder (see **Security** below):
+Create a `.env` in this folder (copy from `.env.example` and add your keys locally):
 
 ```env
 OPENAI_API_KEY=your_openai_key_here
@@ -45,28 +45,17 @@ Use **http://localhost:8000/docs** for the OpenAPI docs.
 |--------------------|--------|
 | `fastapi_chatbot.py` | FastAPI app: `/chat`, `/conversation/{guest_id}`, WebSocket, static chat UI. |
 | `langgraph_new.py`   | LangGraph workflow: intent classification → agent nodes (QA, insights, check-in, etc.) → merge. |
-| `Insights_new.py`    | Insights generation (Streamlit + async wrapper for LangGraph). **Uses S3/OpenAI — requires credentials; use env vars.** |
+| `Insights_new.py`    | Insights generation (optional S3/API integration). |
 | `static/index.html`  | Simple chat UI. |
 | `analysis.txt`       | Short doc: how to add a new API/agent into the LangGraph chatbot. |
 | `requirements.txt`   | Python dependencies. |
 
 ---
 
-## Using this in a Git repo / portfolio
+## Using this repo
 
-- **Do not commit** real API keys or AWS credentials. Use a `.env` file (and add `.env` to `.gitignore`) and set `OPENAI_API_KEY` (and any S3 vars) in the environment.
-- **Include:** `fastapi_chatbot.py`, `langgraph_new.py`, `static/`, `requirements.txt`, `README.md`, `analysis.txt`. Optionally a **stub** or mock for `Insights_new` (e.g. return placeholder text) if you want the repo to run without S3/OpenAI.
-- **Description line** for the repo:  
-  `Multi-agent hotel chatbot (Q&A + insights) with LangGraph and FastAPI — demo.`
-- You can **link** this from your main GenAI portfolio README as: “LangGraph demo: Q&A and insights agent.”
-
----
-
-## Security (important)
-
-- **OpenAI:** Set `OPENAI_API_KEY` in `.env` or environment; remove any hardcoded key from the code before pushing.
-- **Insights/S3:** If you use `Insights_new.py` with real data, use env vars for AWS keys and bucket/prefix; do not commit them.
-- Add `.env` to `.gitignore` and commit a `.env.example` with placeholder variable names only.
+- Copy `.env.example` to `.env` and set your keys locally; `.env` is not committed.
+- Good repo description: *Multi-agent hotel chatbot (Q&A + insights) with LangGraph and FastAPI.*
 
 ---
 
